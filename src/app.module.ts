@@ -13,13 +13,15 @@ import { User } from './user/entity/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
 import { JwtService } from '@nestjs/jwt';
+import { TodoModule } from './todo/todo.module';
+import { Todo } from './todo/entity/todo.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'yongcha-auth.sqlite',
-      entities: [User],
+      entities: [User, Todo],
       synchronize: true,
       logging: true,
     }),
@@ -28,6 +30,7 @@ import { JwtService } from '@nestjs/jwt';
     }),
     UserModule,
     AuthModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
