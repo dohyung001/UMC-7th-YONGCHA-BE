@@ -14,7 +14,9 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user')
 @Controller('user')
 @UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
@@ -31,6 +33,7 @@ export class UserController {
   }
 
   @Get('me')
+  @ApiBearerAuth()
   findOne(@Request() req) {
     return this.userService.findOne(req.user.sub);
   }

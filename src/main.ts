@@ -9,11 +9,17 @@ async function bootstrap() {
     .setTitle('UMC 7th WEB 워크북 API')
     .setDescription('Auth / Todo 관련 API')
     .setVersion('1.0')
+    .addBearerAuth()
+    .addBasicAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('doc', app, document);
+  SwaggerModule.setup('doc', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.listen(3000);

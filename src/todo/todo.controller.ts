@@ -13,7 +13,17 @@ import {
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import {
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Todo } from './entity/todo.entity';
 
+@ApiTags('todo')
 @Controller('todo')
 @UseInterceptors(ClassSerializerInterceptor)
 export class TodoController {
@@ -25,21 +35,33 @@ export class TodoController {
   }
 
   @Get()
-  findAll(@Query('title') title: string) {
+  @ApiOperation({
+    description:
+      '[Todo]를 조회하는 API, query-parameter를 넘길 경우, 해당 title에 대응하는, todo 목록을 줍니다. ',
+  })
+  @ApiOkResponse()
+  @ApiQuery({ name: 'title', required: false, description: 'Todo 제목 입력' })
+  findAll(@Query('title') title?: string) {
     return this.todoService.findAll(title);
   }
 
   @Get(':id')
+  @ApiOkResponse()
+  @ApiNotFoundResponse()
   findOne(@Param('id') id: string) {
     return this.todoService.findOne(+id);
   }
 
   @Patch(':id')
+  @ApiOkResponse()
+  @ApiNotFoundResponse()
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     return this.todoService.update(+id, updateTodoDto);
   }
 
   @Delete(':id')
+  @ApiOkResponse()
+  @ApiNotFoundResponse()
   remove(@Param('id') id: string) {
     return this.todoService.remove(+id);
   }
