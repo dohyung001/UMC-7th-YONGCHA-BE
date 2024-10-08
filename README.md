@@ -83,13 +83,16 @@ Authorization: Bearer `accessToken`
 
 ### `POST` http://localhost:3000/todo (Todo 작성하기)
 
+title, content (body)
+
 `(Success: 200)`
 
 ```json
+// body
+
 {
   "title": "고구마 아이스크림 구매하기!",
   "content": "근데 어디서 팔까요?",
-  "checked": true
 }
 ```
 
