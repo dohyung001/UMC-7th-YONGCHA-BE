@@ -10,18 +10,17 @@ import {
   ClassSerializerInterceptor,
   Query,
 } from '@nestjs/common';
-import { TodoService } from './todo.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+
 import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiQuery,
-  ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Todo } from './entity/todo.entity';
+import { TodoService } from '@src/todo/todo.service';
+import { CreateTodoDto } from '@src/todo/dto/create-todo.dto';
+import { UpdateTodoDto } from '@src/todo/dto/update-todo.dto';
 
 @ApiTags('todo')
 @Controller('todo')

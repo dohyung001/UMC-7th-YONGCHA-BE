@@ -4,17 +4,18 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { UserModule } from './user/user.module';
+
+import { User } from '@src/user/entity/user.entity';
+import { Todo } from '@src/todo/entity/todo.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/entity/user.entity';
-import { AuthModule } from './auth/auth.module';
-import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
+import { ConfigModule } from '@nestjs/config';
+import { UserModule } from '@src/user/user.module';
+import { AuthModule } from '@src/auth/auth.module';
+import { TodoModule } from '@src/todo/todo.module';
+import { AppController } from '@src/app.controller';
+import { AppService } from '@src/app.service';
 import { JwtService } from '@nestjs/jwt';
-import { TodoModule } from './todo/todo.module';
-import { Todo } from './todo/entity/todo.entity';
+import { BearerTokenMiddleware } from '@src/auth/middleware/bearer-token.middleware';
 
 @Module({
   imports: [

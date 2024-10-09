@@ -17,6 +17,15 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "strict": false
-  }
+    "strict": false,
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ],
+      "@src/api/*": [
+        "./src/api/*"
+      ]
+    }
+  },
+  "extends": "./tsconfig.paths.json"
 }
